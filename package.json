@@ -1,0 +1,36 @@
+{
+  "name": "fileloadernode",
+  "version": "1.0.0",
+  "description": "Loader for a file",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start-dev": "webpack serve --open",
+    "server": "node server.js",
+    "build": "webpack"
+  },
+  "keywords": [
+    "file",
+    "loader"
+  ],
+  "author": "M Dodson",
+  "license": "ISC",
+  "dependencies": {
+    "express-fileupload": "^1.2.1",
+    "file-dialog": "0.0.8",
+    "file-selector": "^0.2.4",
+    "formidable": "^1.2.2",
+    "fs-extra": "^10.0.0",
+    "lodash": "^4.17.21",
+    "select-files": "^1.0.1"
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "html-webpack-plugin": "^5.4.0",
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-middleware": "^5.2.1",
+    "webpack-dev-server": "^4.3.1"
+  }
+}
