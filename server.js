@@ -10,6 +10,23 @@ const app = express();
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
 
+// Get entropy status based on configured thresholds
+function getEntropyStatus( entropySize ) {
+  if ( entropySize < settings.thresholds.low ) {
+    return "LOW"
+  } else if ( entropySize >= settings.thresholds.medium ) {
+    return "MEDIUM"
+  } else if ( entropySize >= settings.thresholds.high ) {
+    return "HIGH"
+  }
+};
+
+function getFileSizeInBytes(filename) {
+  var stats = fs.statSync(filename);
+  var fileSizeInBytes = stats.size;
+  return fileSizeInBytes;
+}
+
 app.use(fileUpload({createParentPath:true}));
 app.use(express.urlencoded());
 app.use(express.json());
@@ -29,6 +46,18 @@ app.listen(3000, function () {
 
 app.get('/express-uploader', function(req,res){
   res.sendFile('views/upload.html', {root:__dirname});
+});
+
+// Endpoint to return entropy status
+app.get('/entropy-status', function(req,res){
+  // Get the size of the entropy file
+  const entropySize = getFileSizeInBytes(settings.destination + '/' + settings.entropyFile);
+  const entropyStatus = getEntropyStatus( entropySize );
+  const response = { 
+    entropySize : entropySize,
+    entropyStatus : entropyStatus
+  }
+  res.status(200).send( JSON.stringify(response) );
 });
 
 // express-uploader backend

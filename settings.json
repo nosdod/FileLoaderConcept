@@ -1,3 +1,9 @@
 {
-    "destination" : "Z:/HPE Work/EntropyUploadDir"
+    "destination" : "Z:/HPE Work/EntropyUploadDir",
+    "entropyFile" : "entropy.dat",
+    "thresholds"  : {
+        "low" : 1000,
+        "medium" : 5000,
+        "high"   : 10000
+    }
 }
