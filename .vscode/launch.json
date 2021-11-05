@@ -4,28 +4,10 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    {
-        "name": "Launch Uploader",
-        "program": "${workspaceFolder}/uploader.js",
-        "request": "launch",
-        "skipFiles": [
-            "<node_internals>/**"
-        ],
-        "type": "pwa-node"
-    },
         {
             "type": "pwa-node",
             "request": "launch",
-            "name": "File Uploader 2",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\server.js"
-        },
-        {
-            "type": "pwa-node",
-            "request": "launch",
-            "name": "Initial",
+            "name": "Launch Server",
             "skipFiles": [
                 "<node_internals>/**"
             ],
