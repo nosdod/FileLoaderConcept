@@ -51,6 +51,10 @@ app.get('/express-uploader', function(req,res){
   res.sendFile('views/upload.html', {root:__dirname});
 });
 
+app.get('/whoami', function(req,res){
+    res.status(200).send(JSON.stringify({"message":"NodeJS Server"}));
+});
+
 app.get('/get-entropy', function(req,res){
   const fileName = getEntropy();
   if ( fileName === "ERROR" ) {
@@ -95,7 +99,7 @@ function buildEntropyStatusResponse() {
 }
 
 // Endpoint to return entropy status
-app.get('/entropy-status', function(req,res){
+app.get('/entropy', function(req,res){
   console.log( 'INFO : Client requested status report, response was');
   const response = buildEntropyStatusResponse();
   console.log( response );
@@ -103,7 +107,7 @@ app.get('/entropy-status', function(req,res){
 });
 
 // Caller posts json object
-app.post('/check-credentials', function(req,res) {
+app.post('/credentials', function(req,res) {
   const data = JSON.parse( req.body.credentials );
   if ( data ) {
     let passed = true;
@@ -123,9 +127,9 @@ app.post('/check-credentials', function(req,res) {
       }
     }
     if ( passed ) {
-      res.status(200).send("OK")
+      res.status(200).send({userOK : true})
     } else {
-      res.status(200).send("FAILED")
+      res.status(200).send({userOK : false})
     }
   } else {
     res.status(400).send("NO CREDENTIALS RECEIVED");
@@ -133,7 +137,7 @@ app.post('/check-credentials', function(req,res) {
 });
 
 // express-uploader backend
-app.post('/upload',function(req,res){
+app.post('/entropy',function(req,res){
   let newFile;
   let uploadPath;
 
