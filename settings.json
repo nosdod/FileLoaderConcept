@@ -1,6 +1,6 @@
 {
     "port" : 4000,
-    "destination" : "Z:/HPE Work/EntropyUploadDir",
+    "destination" : "C:/UploadDir",
     "entropyFile" : "entropy.dat",
     "thresholds"  : {
         "critical" : 10000,
